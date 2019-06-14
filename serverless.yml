@@ -1,0 +1,14 @@
+service: lambda-infinite-loop-demo
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action: lambda:InvokeFunction
+      Resource: arn:aws:lambda:us-east-1:*:function:${self:service}-dev-hello
+
+functions:
+  hello:
+    handler: handler.hello
